@@ -1,0 +1,7 @@
+message KyoshinShindoColor
+{
+    required float Intensity = 1;
+    required byte R = 2;
+    required byte G = 3;
+    required byte B = 4;
+}
