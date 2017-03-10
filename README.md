@@ -13,13 +13,34 @@
 ## CSVファイルの仕様
 `震度,R値,G値,B値` となっています。
 
+## 他シリアライズ済みファイルについて
+CSVの他に、Protobuf(拡張子は.pbf)、MessagePack-CSharp(拡張子は.mp)、Jsonを添付しています。  
+.protoファイルは書き方がわからないので適当になっています。  
+間違ってはいないはずですが実際の内容は.protoファイルに記述している内容を繰り返したものになっています。
+
+C#でのクラスは以下のようになっています。
+```cs
+[DataContract, MessagePackObject, ProtoContract]
+public class KyoshinShindoColor
+{
+	[DataMember, Key(0), ProtoMember(1, IsRequired = true)]
+	public float Intensity { get; set; }
+	[DataMember, Key(1), ProtoMember(2, IsRequired = true)]
+	public byte R { get; set; }
+	[DataMember, Key(2), ProtoMember(3, IsRequired = true)]
+	public byte G { get; set; }
+	[DataMember, Key(3), ProtoMember(4, IsRequired = true)]
+	public byte B { get; set; }
+}
+```
+
 ## ライセンス
-作者: [ingen084](http://twitter.com/ingen084)  
+作成: [ingen084](http://twitter.com/ingen084)  
 協力: [こんぽ](https://twitter.com/compo031)さん
 
 使用する際の報告は不要ですが(していただけると喜びます)、クレジットの表記はなるべくしていただけると助かります。(モチベがだいぶ上がるので)
 
-## 値が間違っている/もっと細かいのあるよ
+## データ/値が間違っている or もっと細かいのあるよ
 Issueを立てていただくか、プルリクを送っていただくと対処します。
 
 ## 注意事項

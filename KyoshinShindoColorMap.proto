@@ -1,7 +1,7 @@
 message KyoshinShindoColor
 {
-    required float Intensity = 1;
-    required byte R = 2;
-    required byte G = 3;
-    required byte B = 4;
+    required float intensity = 1;
+    required int32 r = 2;
+    required int32 g = 3;
+    required int32 b = 4;
 }
