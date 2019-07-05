@@ -3,7 +3,10 @@
 テーブルって書いてるくせにMapになってるのは仕様です。
 
 ## 解説
-強震モニタのリアルタイム震度では、震度0.1刻みで-3から6.9まで合計100段階で色が変化します。(未だ確定しているわけではないので、間違っている可能性もあります。)
+強震モニタのリアルタイム震度では、震度0.1刻みで-3から6.9まで~~合計100段階で色が変化します~~。(未だ確定しているわけではないので、間違っている可能性もあります。)
+
+**2019年7月5日12時25分26秒のデータにて、計測震度7.0以上相当の色が確認されたため、試験的に7.0の色を追加しています。**  
+7.0以上の場合にこの色になるようですので、ソフトで使用する際は `7.0+` といった表記をしてみてもいいかもしれません。
 
 その段階を網羅してしまおうということでこの変換テーブルが作成されました。  
 防災アプリケーションの今後の発展のために公開しています。
@@ -12,27 +15,6 @@
 
 ## CSVファイルの仕様
 `震度,R値,G値,B値` となっています。
-
-## 他シリアライズ済みファイルについて
-CSVの他に、Protobuf(拡張子は.pbf)、MessagePack-CSharp(拡張子は.mp)、Jsonを添付しています。  
-.protoファイルは書き方がわからないので適当になっています。  
-間違ってはいないはずですが実際の内容は.protoファイルに記述している内容を繰り返したものになっています。
-
-C#でのクラスは以下のようになっています。
-```cs
-[DataContract, MessagePackObject, ProtoContract]
-public class KyoshinShindoColor
-{
-	[DataMember, Key(0), ProtoMember(1, IsRequired = true)]
-	public float Intensity { get; set; }
-	[DataMember, Key(1), ProtoMember(2, IsRequired = true)]
-	public byte R { get; set; }
-	[DataMember, Key(2), ProtoMember(3, IsRequired = true)]
-	public byte G { get; set; }
-	[DataMember, Key(3), ProtoMember(4, IsRequired = true)]
-	public byte B { get; set; }
-}
-```
 
 ## ライセンス
 作成: [ingen084](http://twitter.com/ingen084)  
